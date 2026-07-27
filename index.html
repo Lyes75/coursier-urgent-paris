@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coursier urgent Paris — sur place en 30 min | BIP Services</title>
+<meta name="description" content="Coursier express à Paris et en Île-de-France. Un coursier sur place en 30 minutes. Coursiers salariés, flotte électrique, suivi en temps réel. Appelez le 01 41 06 63 63.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@800&display=swap">
+<style>
+  :root{
+    --blue:#009FE2;
+    --navy:#14213D;
+    --navy2:#1E2E52;
+    --red:#F42528;
+    --white:#FFFFFF;
+    --surface:#F3F6F9;
+    --line:#E5E5E5;
+    --text:#3A3A3A;
+    --muted:#6A6A6A;
+    --star:#FBBC05;
+    --wrap:1080px;
+    --pad-y:clamp(36px,6vw,60px);
+    --pad-x:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    font-weight:400;
+    color:var(--text);
+    background:var(--white);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0 0 .4em;line-height:1.15;color:var(--navy)}
+  h1{font-size:clamp(28px,7vw,44px);font-weight:900}
+  h2{font-size:clamp(22px,4.5vw,30px);font-weight:900}
+  h3{font-size:18px;font-weight:700}
+  p{margin:0 0 1em}
+  a{color:var(--blue)}
+  strong{font-weight:700}
+  .num{font-family:Montserrat,Lato,sans-serif;font-weight:800}
+  .wrap{max-width:var(--wrap);margin:0 auto}
+  section{padding:var(--pad-y) var(--pad-x)}
+
+  /* --- Buttons --- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+    font-family:Lato,sans-serif;font-weight:900;font-size:18px;
+    text-decoration:none;border:0;border-radius:12px;cursor:pointer;
+    padding:16px 22px;line-height:1.1;transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-call{background:var(--red);color:var(--white);width:100%;box-shadow:0 6px 16px rgba(244,37,40,.28)}
+  .btn-call:hover{background:#d81f22}
+  .btn-call .num{font-size:22px;letter-spacing:.5px}
+  .btn-ghost{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:var(--white)}
+  .btn-blue{background:var(--blue);color:var(--white)}
+  .btn-blue:hover{background:#0089c4}
+
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+  /* --- Topbar --- */
+  .topbar{
+    position:sticky;top:0;z-index:40;background:var(--white);
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:8px 14px;
+  }
+  .topbar img{height:38px;width:auto;display:block}
+  .top-tel{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    color:var(--navy);font-weight:900;font-size:16px;white-space:nowrap;
+  }
+  .top-tel svg{fill:var(--blue);flex:0 0 auto}
+
+  /* --- Hero --- */
+  .hero{background:var(--navy);color:#EAF0F7}
+  .hero h1{color:var(--white)}
+  .hero h1 em{color:var(--blue);font-style:normal}
+  .hero-lead{font-size:clamp(16px,2.4vw,19px);color:#C4D0E0;max-width:34ch}
+  .hero-grid{display:grid;gap:26px}
+  .status{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    border-radius:999px;padding:6px 13px;font-size:13.5px;font-weight:700;color:#DCE5F0;margin-bottom:14px;
+  }
+  .status .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:#37B24D}
+  .status[data-open="false"] .dot{background:#F59F00}
+  .status .dot{box-shadow:0 0 0 0 rgba(55,178,77,.6);animation:pulse 2.4s infinite}
+  .status[data-open="false"] .dot{animation:none}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(55,178,77,.5)}70%{box-shadow:0 0 0 7px rgba(55,178,77,0)}100%{box-shadow:0 0 0 0 rgba(55,178,77,0)}}
+
+  /* Delay selector */
+  .selector{margin:6px 0 18px}
+  .selector-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9DB0C7;margin-bottom:9px}
+  .delais{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .delai-btn{
+    background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);
+    color:var(--white);border-radius:11px;padding:12px 6px;cursor:pointer;
+    text-align:center;transition:background .12s ease,border-color .12s ease;
+  }
+  .delai-btn:hover{border-color:rgba(255,255,255,.4)}
+  .delai-btn .d-time{display:block;font-family:Montserrat,sans-serif;font-weight:800;font-size:20px;line-height:1}
+  .delai-btn .d-name{display:block;font-size:12.5px;font-weight:700;color:#B9C6D8;margin-top:4px}
+  .delai-btn[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
+  .delai-btn[aria-pressed="true"] .d-name{color:#FFE1E1}
+  .estimate{margin-top:13px;font-size:16px;color:#EAF0F7}
+  .estimate strong{color:var(--white)}
+  .estimate .num{color:var(--white);font-size:19px}
+  .estimate-sub{font-size:13px;color:#9DB0C7;margin:4px 0 0}
+  .hero-mention{font-size:13px;color:#9DB0C7;margin:12px 0 0}
+
+  /* Hero form */
+  .form-card{
+    background:var(--white);color:var(--text);border-radius:16px;
+    padding:20px 18px;box-shadow:0 12px 30px rgba(0,0,0,.22);
+  }
+  .form-card h2{font-size:20px;margin-bottom:4px}
+  .form-card .sub{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px}
+  .field input,.field select{
+    width:100%;font:inherit;font-size:16px;color:var(--text);
+    padding:12px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--white);
+  }
+  .field input:focus,.field select:focus{border-color:var(--blue);outline:none}
+  .field.err input,.field.err select{border-color:var(--red);background:#FFF5F5}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .form-note{font-size:12px;color:var(--muted);margin:10px 0 0;text-align:center}
+  .confirm{text-align:center;padding:14px 6px}
+  .confirm h2{color:var(--navy)}
+  .confirm .check{width:52px;height:52px;border-radius:50%;background:#E7F7EC;color:#2B8A3E;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px}
+  .confirm a{font-weight:900;color:var(--navy);text-decoration:none;font-size:20px}
+
+  /* --- Proof band --- */
+  .proof{background:var(--navy2);color:#DCE5F0}
+  .proof ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .proof li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700}
+  .proof li b{color:var(--white)}
+  .proof .ico{color:var(--blue);flex:0 0 auto}
+
+  /* --- Fleet --- */
+  .fleet h2{text-align:center;margin-bottom:24px}
+  .fleet-list{display:grid;gap:14px}
+  .fleet-card{
+    display:flex;align-items:center;gap:16px;
+    border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--white);
+  }
+  .fleet-tile{
+    flex:0 0 auto;width:124px;height:92px;border-radius:12px;background:var(--surface);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fleet-tile img{width:108px;height:auto;display:block}
+  .fleet-card h3{margin-bottom:3px}
+  .fleet-meta{font-size:14px;color:var(--muted);margin:0}
+  .fleet-meta .num{color:var(--navy)}
+
+  /* --- Steps --- */
+  .steps{background:var(--surface)}
+  .steps h2{text-align:center;margin-bottom:26px}
+  .steps ol{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:16px}
+  .steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .steps li::before{
+    content:counter(s);flex:0 0 auto;width:38px;height:38px;border-radius:50%;
+    background:var(--navy);color:var(--white);font-family:Montserrat,sans-serif;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .steps h3{margin-bottom:2px}
+  .steps p{margin:0;font-size:14.5px;color:var(--muted)}
+
+  /* --- Zone & tariffs --- */
+  .zone .cols{display:grid;gap:16px}
+  .zone-block{border:1px solid var(--line);border-radius:14px;padding:20px}
+  .zone-block h3{margin-bottom:8px}
+  .zone-block p{font-size:14.5px;color:var(--muted);margin:0 0 .5em}
+  .price{background:var(--navy);color:#EAF0F7;border-color:var(--navy)}
+  .price h3{color:var(--white)}
+  .price p{color:#C4D0E0}
+  .price .big{font-family:Montserrat,sans-serif;font-weight:800;font-size:34px;color:var(--white);line-height:1;margin:2px 0 6px}
+  .price .big span{font-size:16px;color:#9DB0C7}
+  .tag{display:inline-block;font-size:12.5px;font-weight:700;color:var(--navy);background:#DCEFFB;border-radius:999px;padding:4px 11px;margin:2px 4px 0 0}
+
+  /* --- Reviews --- */
+  .reviews{background:var(--surface)}
+  .reviews h2{text-align:center;margin-bottom:6px}
+  .agg{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--navy);margin:0 auto 24px;width:max-content;max-width:100%}
+  .agg .score{display:flex;align-items:baseline;gap:8px}
+  .agg .num{font-size:40px;color:var(--navy);line-height:1}
+  .agg .out{font-size:15px;color:var(--muted)}
+  .stars{color:var(--star);letter-spacing:2px;font-size:18px}
+  .agg .count{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--muted)}
+  .review-grid{display:grid;gap:14px}
+  figure.review{margin:0;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px}
+  figure.review .stars{font-size:16px;display:block;margin-bottom:8px}
+  figure.review blockquote{margin:0 0 12px;font-size:15px;color:var(--text)}
+  figure.review figcaption{font-size:13.5px;color:var(--muted)}
+  figure.review figcaption b{color:var(--navy);font-weight:700}
+
+  /* --- Final CTA --- */
+  .final{background:var(--navy);color:#EAF0F7;text-align:center}
+  .final h2{color:var(--white)}
+  .final p{color:#C4D0E0;max-width:44ch;margin-left:auto;margin-right:auto}
+  .final .cta-row{display:grid;gap:12px;max-width:420px;margin:22px auto 0}
+
+  /* --- Footer --- */
+  footer{background:#0F1830;color:#B9C6D8;padding:34px 18px calc(88px + env(safe-area-inset-bottom));font-size:14px}
+  footer .wrap{display:grid;gap:8px}
+  footer strong{color:var(--white);font-size:15px}
+  footer a{color:#9DB8DA;text-decoration:none}
+  footer .links{margin-top:8px;display:flex;gap:16px;flex-wrap:wrap}
+
+  /* --- Mobile dock --- */
+  .dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:grid;grid-template-columns:1fr 1fr;gap:9px;
+    background:var(--white);border-top:1px solid var(--line);
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    box-shadow:0 -4px 16px rgba(0,0,0,.10);
+  }
+  .dock .btn{font-size:16px;padding:14px 10px;border-radius:11px;width:100%}
+
+  /* ============ Desktop ============ */
+  @media (min-width:720px){
+    .top-tel{font-size:19px}
+    .topbar img{height:44px}
+    .hero-grid{grid-template-columns:1.15fr .85fr;align-items:start;gap:34px}
+    .hero-form{align-self:start;position:sticky;top:72px}
+    .proof ul{grid-template-columns:repeat(4,1fr)}
+    .proof li{flex-direction:column;text-align:center;gap:8px}
+    .fleet-list{grid-template-columns:repeat(3,1fr)}
+    .fleet-card{flex-direction:row}
+    .steps ol{grid-template-columns:repeat(3,1fr)}
+    .zone .cols{grid-template-columns:1fr 1fr}
+    .review-grid{grid-template-columns:repeat(3,1fr)}
+    .btn-call{width:auto;min-width:280px}
+    .dock{display:none}
+    footer{padding-bottom:34px}
+    footer .wrap{grid-template-columns:1fr auto}
+  }
+  @media (min-width:720px){
+    .hero .btn-call{width:100%}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Topbar -->
+<header class="topbar">
+  <picture>
+    <source srcset="img/logo.avif" type="image/avif">
+    <img src="img/logo.webp" alt="BIP Services — coursier Paris" width="385" height="227" fetchpriority="high" decoding="async">
+  </picture>
+  <a class="top-tel" href="tel:+33141066363" data-cta="tel" data-loc="topbar">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+    01 41 06 63 63
+  </a>
+</header>
+
+<!-- 2. Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-main">
+      <span class="status" id="status" data-open="true" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="status-text">Standard ouvert — on décroche</span>
+      </span>
+
+      <h1>Un coursier sur place en <em>30&nbsp;minutes</em>.</h1>
+      <p class="hero-lead">Paris et Île-de-France. Vous appelez, on part. Coursiers salariés, flotte électrique, suivi en temps réel.</p>
+
+      <div class="selector" role="group" aria-label="Choisissez votre délai">
+        <p class="selector-label">Votre délai</p>
+        <div class="delais">
+          <button type="button" class="delai-btn" data-delai="1h" aria-pressed="true" data-cta="delai">
+            <span class="d-time">1h</span><span class="d-name">Direct</span>
+          </button>
+          <button type="button" class="delai-btn" data-delai="1h30" aria-pressed="false" data-cta="delai">
+            <span class="d-time">1h30</span><span class="d-name">Express</span>
+          </button>
+          <button type="button" class="delai-btn" data-delai="3h" aria-pressed="false" data-cta="delai">
+            <span class="d-time">3h</span><span class="d-name">Standard</span>
+          </button>
+        </div>
+        <p class="estimate" id="estimate" aria-live="polite">Enlèvement estimé à <strong class="num">14h52</strong></p>
+        <p class="estimate-sub" id="estimate-sub">Délais en deux-roues. Comptez 30 min de plus en véhicule.</p>
+      </div>
+
+      <a class="btn btn-call" href="tel:+33141066363" data-cta="tel" data-loc="hero">
+        Appeler le <span class="num">01&nbsp;41&nbsp;06&nbsp;63&nbsp;63</span>
+      </a>
+      <p class="hero-mention">Réponse immédiate du lundi au vendredi, 8h30 – 19h.</p>
+    </div>
+
+    <form class="form-card hero-form" id="rappel" novalidate>
+      <h2>Être rappelé maintenant</h2>
+      <p class="sub">Un opérateur vous rappelle avec un prix ferme.</p>
+
+      <div class="field" id="wrap-tel">
+        <label for="f-tel">Votre téléphone</label>
+        <input id="f-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78" required>
+      </div>
+      <div class="field" id="wrap-enl">
+        <label for="f-enl">Code postal d’enlèvement</label>
+        <input id="f-enl" name="enlevement" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="75008" required>
+      </div>
+      <div class="field" id="wrap-liv">
+        <label for="f-liv">Code postal de livraison</label>
+        <input id="f-liv" name="livraison" type="text" inputmode="numeric" placeholder="92230" required>
+      </div>
+      <div class="field">
+        <label for="f-delai">Délai souhaité</label>
+        <select id="f-delai" name="delai">
+          <option value="1h">1h — Direct</option>
+          <option value="1h30">1h30 — Express</option>
+          <option value="3h">3h — Standard</option>
+        </select>
+      </div>
+
+      <!-- honeypot anti-spam -->
+      <div class="hp" aria-hidden="true">
+        <label for="f-company">Ne pas remplir</label>
+        <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <input type="hidden" name="gclid" id="f-gclid" value="">
+      <input type="hidden" name="source" value="ads-urgence-express">
+
+      <button type="submit" class="btn btn-call">Demander un rappel</button>
+      <p class="form-note">Rappel sous 10 min ouvrées. Aucune donnée revendue.</p>
+    </form>
+  </div>
+</section>
+
+<!-- 3. Proof band -->
+<section class="proof">
+  <ul class="wrap">
+    <li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.8 5.8 20.6l1.6-6.7L2.2 8.9l6.9-.6z"/></svg> <span><b class="num">4,3/5</b> sur Google</span></li>
+    <li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l9 4v6c0 5.6-3.8 10.7-9 12-5.2-1.3-9-6.4-9-12V5z"/></svg> <span>Coursier à Paris depuis <b class="num">1999</b></span></li>
+    <li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-9 2-9 6v2h18v-2c0-4-5-6-9-6z"/></svg> <span>Coursiers <b>salariés</b>, pas d’auto-entrepreneurs</span></li>
+    <li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h7l1 2h4a1 1 0 011 1v9a3 3 0 01-3 3 3 3 0 01-6 0H9a3 3 0 01-6 0V6a2 2 0 012-2zm-1 14a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm12 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg> <span>Flotte électrique, label <b>Objectif CO₂</b></span></li>
+  </ul>
+</section>
+
+<!-- 4. Fleet -->
+<section class="fleet">
+  <div class="wrap">
+    <h2>Le bon véhicule pour chaque course</h2>
+    <div class="fleet-list">
+      <article class="fleet-card">
+        <span class="fleet-tile"><img src="img/moto.webp" alt="Coursier moto BIP Services" width="200" height="137" loading="lazy" decoding="async"></span>
+        <div>
+          <h3>Moto</h3>
+          <p class="fleet-meta">Jusqu’à <span class="num">10&nbsp;kg</span></p>
+          <p class="fleet-meta">Enlèvement → livraison : <span class="num">30&nbsp;min&nbsp;–&nbsp;1h</span></p>
+        </div>
+      </article>
+      <article class="fleet-card">
+        <span class="fleet-tile"><img src="img/voiture.webp" alt="Coursier voiture BIP Services" width="200" height="137" loading="lazy" decoding="async"></span>
+        <div>
+          <h3>Voiture</h3>
+          <p class="fleet-meta">Jusqu’à <span class="num">450&nbsp;kg</span></p>
+          <p class="fleet-meta">Enlèvement → livraison : <span class="num">1h&nbsp;–&nbsp;1h30</span></p>
+        </div>
+      </article>
+      <article class="fleet-card">
+        <span class="fleet-tile"><img src="img/camion.webp" alt="Coursier camion à hayon BIP Services" width="200" height="137" loading="lazy" decoding="async"></span>
+        <div>
+          <h3>Camion (hayon)</h3>
+          <p class="fleet-meta">Jusqu’à <span class="num">800&nbsp;kg</span></p>
+          <p class="fleet-meta">Enlèvement → livraison : <span class="num">1h&nbsp;–&nbsp;2h</span></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. How it works -->
+<section class="steps">
+  <div class="wrap">
+    <h2>Comment ça se passe</h2>
+    <ol>
+      <li><div><h3>Vous appelez</h3><p>Prix ferme donné dans la foulée.</p></div></li>
+      <li><div><h3>Le coursier part</h3><p>Sur place sous 30 minutes en moyenne.</p></div></li>
+      <li><div><h3>Vous suivez la course</h3><p>Suivi temps réel, preuve de livraison.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. Zone & tariffs -->
+<section class="zone">
+  <div class="wrap cols">
+    <div class="zone-block">
+      <h3>Zone couverte</h3>
+      <p>Paris intra-muros et petite couronne (<span class="num">92</span> / <span class="num">93</span> / <span class="num">94</span>), et toute l’Île-de-France sur demande.</p>
+      <p>Enlèvement partout dans Paris en moins de 30 minutes en moyenne.</p>
+    </div>
+    <div class="zone-block price">
+      <h3>Tarif</h3>
+      <p class="big">à partir de 7,50&nbsp;€ <span>HT</span></p>
+      <p>Prix ferme annoncé avant le départ. Pas d’abonnement, pas de surprise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Reviews -->
+<section class="reviews">
+  <div class="wrap">
+    <h2>Ce que disent nos clients</h2>
+    <a class="agg" href="https://www.google.com/maps/place/BIP+Services+-+Coursier+Paris+Express/data=!4m2!3m1!1s0x0:0xb344286a149d4374" target="_blank" rel="noopener nofollow" data-cta="google">
+      <span class="score"><span class="num">4,3</span><span class="out">/ 5</span></span>
+      <span class="stars" role="img" aria-label="4,3 sur 5">★★★★<span aria-hidden="true">☆</span></span>
+      <span class="count">
+        <svg width="17" height="17" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.7-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7c1.7-5.2 6.6-9 12.3-9z"/></svg>
+        Note Google · 24 avis
+      </span>
+    </a>
+
+    <div class="review-grid">
+      <figure class="review">
+        <span class="stars" role="img" aria-label="5 sur 5">★★★★★</span>
+        <blockquote>Mes deux dernières demandes de coursier se sont super bien passées. Je recommande BIP Service pour leur travail soigné, le respect des délais et une communication claire du début jusqu’à la fin de la course.</blockquote>
+        <figcaption><b>Manon Laine</b> · il y a 2 mois</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="stars" role="img" aria-label="5 sur 5">★★★★★</span>
+        <blockquote>Je suis cliente chez BIP Services depuis plus de 6 mois maintenant et je recommande fortement cette entreprise de coursiers. Les standardistes sont adorables et les coursiers très respectueux des colis confiés.</blockquote>
+        <figcaption><b>Luna Tattoo</b> · il y a 2 mois</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="stars" role="img" aria-label="5 sur 5">★★★★★</span>
+        <blockquote>Très satisfait ! Rapide, disponible et professionnel. Je les recommande sans hésiter !</blockquote>
+        <figcaption><b>Sébastien Lemoine</b> · il y a un an</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Final CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>Un pli à faire partir maintenant ?</h2>
+    <p>Un appel suffit. On vous donne un prix ferme et un coursier part dans la foulée.</p>
+    <div class="cta-row">
+      <a class="btn btn-call" href="tel:+33141066363" data-cta="tel" data-loc="final">
+        Appeler le <span class="num">01&nbsp;41&nbsp;06&nbsp;63&nbsp;63</span>
+      </a>
+      <a class="btn btn-ghost" href="#rappel" data-cta="rappel" data-loc="final">Être rappelé</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Footer -->
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>BIP Services</strong><br>
+      7/14 rue du Fossé Blanc, 92230 Gennevilliers<br>
+      <a href="tel:+33141066363" data-cta="tel" data-loc="footer">01 41 06 63 63</a> ·
+      <a href="mailto:contact@bipservices.fr">contact@bipservices.fr</a><br>
+      Du lundi au vendredi, 8h30 – 19h00
+      <div class="links">
+        <a href="/cgv/">CGV</a>
+        <a href="/politique-de-confidentialite/">RGPD</a>
+      </div>
+    </div>
+    <div>Coursier express à Paris depuis 1999.</div>
+  </div>
+</footer>
+
+<!-- 10. Mobile dock -->
+<nav class="dock" aria-label="Actions rapides">
+  <a class="btn btn-call" href="tel:+33141066363" data-cta="tel" data-loc="dock">Appeler</a>
+  <a class="btn btn-blue" href="#rappel" data-cta="rappel" data-loc="dock">Être rappelé</a>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Tracking ---------- */
+  window.dataLayer = window.dataLayer || [];
+  function track(name, payload){
+    window.dataLayer.push(Object.assign({event:name}, payload || {}));
+  }
+
+  /* ---------- Horaires (heure de Paris) ---------- */
+  var TZ = 'Europe/Paris';
+  var OPEN_MIN = 8*60 + 30;   // 8h30
+  var CLOSE_MIN = 19*60;      // 19h00
+  var PICKUP = { '1h':30, '1h30':45, '3h':60 }; // délai d'enlèvement (min) par option
+
+  function parisNow(){
+    var parts = new Intl.DateTimeFormat('fr-FR', {
+      timeZone: TZ, weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
+    }).formatToParts(new Date());
+    var o = {};
+    parts.forEach(function(p){ o[p.type] = p.value; });
+    var h = parseInt(o.hour, 10);
+    var m = parseInt(o.minute, 10);
+    var wd = (o.weekday || '').toLowerCase();
+    var isWeekday = /^(lun|mar|mer|jeu|ven)/.test(wd);
+    return { minutes: h*60 + m, weekday: wd, isWeekday: isWeekday };
+  }
+  function isOpen(t){
+    return t.isWeekday && t.minutes >= OPEN_MIN && t.minutes < CLOSE_MIN;
+  }
+  function fmt(totalMin){
+    totalMin = ((totalMin % 1440) + 1440) % 1440;
+    var h = Math.floor(totalMin / 60), m = totalMin % 60;
+    return h + 'h' + (m < 10 ? '0' : '') + m;
+  }
+
+  /* ---------- État + éléments ---------- */
+  var state = { delai: '1h' };
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.delai-btn'));
+  var select  = document.getElementById('f-delai');
+  var estEl   = document.getElementById('estimate');
+  var subEl   = document.getElementById('estimate-sub');
+  var pill    = document.getElementById('status');
+  var pillTxt = document.getElementById('status-text');
+
+  function refresh(){
+    var t = parisNow();
+    var open = isOpen(t);
+
+    // Pastille de statut
+    pill.setAttribute('data-open', open ? 'true' : 'false');
+    pillTxt.textContent = open ? 'Standard ouvert — on décroche' : 'Standard fermé — reprise à 8h30';
+
+    // Ligne d'estimation
+    if(open){
+      estEl.innerHTML = 'Enlèvement estimé à <strong class="num">' + fmt(t.minutes + PICKUP[state.delai]) + '</strong>';
+      subEl.textContent = 'Délais en deux-roues. Comptez 30 min de plus en véhicule.';
+    } else {
+      estEl.innerHTML = 'Premier enlèvement possible à <strong class="num">9h00</strong>';
+      subEl.textContent = 'Laissez votre numéro, on vous rappelle à l’ouverture.';
+    }
+  }
+
+  function setDelai(key, silent){
+    if(!PICKUP.hasOwnProperty(key)) return;
+    state.delai = key;
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-delai') === key ? 'true' : 'false');
+    });
+    if(select.value !== key) select.value = key;
+    refresh();
+    if(!silent) track('delai_selectionne', { delai: key });
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ setDelai(b.getAttribute('data-delai')); });
+  });
+  select.addEventListener('change', function(){ setDelai(select.value); });
+
+  // init
+  setDelai('1h', true);
+  refresh();
+  setInterval(refresh, 30000);
+
+  /* ---------- gclid ---------- */
+  function persistGclid(){
+    try {
+      var m = location.search.match(/[?&]gclid=([^&]+)/);
+      if(m) sessionStorage.setItem('gclid', decodeURIComponent(m[1]));
+      var g = sessionStorage.getItem('gclid') || '';
+      var hid = document.getElementById('f-gclid');
+      if(hid) hid.value = g;
+      return g;
+    } catch(e){ return ''; }
+  }
+  persistGclid();
+
+  /* ---------- Écouteur délégué (tel + rappel) ---------- */
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-cta]') : null;
+    if(!el) return;
+    var cta = el.getAttribute('data-cta');
+    var loc = el.getAttribute('data-loc') || '';
+    if(cta === 'tel')        track('clic_telephone', { emplacement: loc });
+    else if(cta === 'rappel') track('clic_rappel',    { emplacement: loc });
+  });
+
+  /* ================================================================
+     POINT D'INTÉGRATION UNIQUE — envoi du lead.
+     Pour changer la destination, ne modifier QUE cette fonction
+     (et la constante WEBHOOK_URL ci-dessous). Le reste de la page
+     n'a pas à être touché.
+  ================================================================ */
+  var WEBHOOK_URL = 'REMPLACER_PAR_URL_WEBHOOK_N8N';
+  function sendLead(payload){
+    return fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){ /* échec silencieux : l'appel téléphonique reste la voie principale */ });
+  }
+
+  /* ---------- Formulaire ---------- */
+  var form = document.getElementById('rappel');
+  var required = [
+    { name:'telephone', wrap:'wrap-tel' },
+    { name:'enlevement', wrap:'wrap-enl' },
+    { name:'livraison', wrap:'wrap-liv' }
+  ];
+
+  // effacer l'erreur à la saisie
+  required.forEach(function(f){
+    var input = form.elements[f.name];
+    input.addEventListener('input', function(){
+      document.getElementById(f.wrap).classList.remove('err');
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // honeypot : si rempli, on abandonne sans rien envoyer
+    if(form.elements['company'].value){ return; }
+
+    // validation JS
+    var firstInvalid = null;
+    required.forEach(function(f){
+      var input = form.elements[f.name];
+      var wrap = document.getElementById(f.wrap);
+      if(!input.value.trim()){
+        wrap.classList.add('err');
+        if(!firstInvalid) firstInvalid = input;
+      } else {
+        wrap.classList.remove('err');
+      }
+    });
+    if(firstInvalid){ firstInvalid.focus(); return; }
+
+    var g = persistGclid();
+    var payload = {
+      telephone:  form.elements['telephone'].value.trim(),
+      enlevement: form.elements['enlevement'].value.trim(),
+      livraison:  form.elements['livraison'].value.trim(),
+      delai:      form.elements['delai'].value,
+      gclid:      g,
+      source:     form.elements['source'].value
+    };
+
+    track('lead_formulaire', { delai: payload.delai, gclid: g });
+    sendLead(payload);
+
+    // état de confirmation
+    form.innerHTML =
+      '<div class="confirm">' +
+        '<div class="check" aria-hidden="true">✓</div>' +
+        '<h2>C’est noté.</h2>' +
+        '<p>Un opérateur vous rappelle sous <strong>10 minutes</strong>.</p>' +
+        '<p>Besoin d’aller plus vite ?<br>' +
+        '<a href="tel:+33141066363" data-cta="tel" data-loc="hero">01 41 06 63 63</a></p>' +
+      '</div>';
+  });
+
+})();
+</script>
+</body>
+</html>
