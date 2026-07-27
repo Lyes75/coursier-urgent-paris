@@ -3,6 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- CONSENT MODE V2 — INACTIF. Décision prise le 27/07/2026.
+     Aucune CMP n'existe sur bipservices.fr : le site charge déjà gtag()
+     sans recueil de consentement. Activer un « consent default: denied »
+     ici, sans bannière capable d'émettre l'update, couperait toute remontée
+     vers Google Ads. On lance sans, pour valider le tunnel de mesure.
+     Ce n'est PAS un oubli : c'est une dette identifiée, à traiter au niveau
+     du site entier. Décommenter le jour où une CMP est en place.
+<script>
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  ad_storage:'denied', ad_user_data:'denied',
+  ad_personalization:'denied', analytics_storage:'denied',
+  wait_for_update:500
+});
+</script>
+-->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N2CXVKFL');</script>
+<!-- End Google Tag Manager -->
 <title>Coursier urgent Paris — sur place en 30 min | BIP Services</title>
 <meta name="description" content="Coursier express à Paris et en Île-de-France. Un coursier sur place en 30 minutes. Coursiers salariés, flotte électrique, suivi en temps réel. Appelez le 01 41 06 63 63.">
 <meta name="robots" content="noindex, follow">
@@ -10,6 +34,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@800&display=swap">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://formspree.io">
 <style>
   :root{
     --blue:#009FE2;
@@ -144,6 +170,12 @@
   .field.err input,.field.err select{border-color:var(--red);background:#FFF5F5}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .form-note{font-size:12px;color:var(--muted);margin:10px 0 0;text-align:center}
+  .form-err{
+    margin:10px 0 0;padding:11px 13px;font-size:14px;line-height:1.45;
+    background:#FFF5F5;border-left:3px solid var(--red);border-radius:0 8px 8px 0;
+    color:#8A1214;
+  }
+  .form-err a{color:var(--red);font-weight:900;white-space:nowrap}
   .confirm{text-align:center;padding:14px 6px}
   .confirm h2{color:var(--navy)}
   .confirm .check{width:52px;height:52px;border-radius:50%;background:#E7F7EC;color:#2B8A3E;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px}
@@ -265,6 +297,10 @@
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N2CXVKFL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- 1. Topbar -->
 <header class="topbar">
@@ -339,15 +375,21 @@
         </select>
       </div>
 
-      <!-- honeypot anti-spam -->
+      <!-- honeypot anti-spam (nom reconnu nativement par Formspree) -->
       <div class="hp" aria-hidden="true">
-        <label for="f-company">Ne pas remplir</label>
-        <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+        <label for="f-gotcha">Ne pas remplir</label>
+        <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
       </div>
       <input type="hidden" name="gclid" id="f-gclid" value="">
       <input type="hidden" name="source" value="ads-urgence-express">
+      <input type="hidden" name="_subject" value="Demande de coursier urgent — Google Ads">
 
       <button type="submit" class="btn btn-call">Demander un rappel</button>
+      <p class="form-err" id="form-err" role="alert" hidden>
+        L’envoi a échoué. Appelez-nous directement au
+        <a href="tel:+33141066363" data-cta="tel" data-loc="form-erreur">01 41 06 63 63</a>,
+        on décroche tout de suite.
+      </p>
       <p class="form-note">Rappel sous 10 min ouvrées. Aucune donnée revendue.</p>
     </form>
   </div>
@@ -499,8 +541,9 @@
 (function(){
   'use strict';
 
-  /* ---------- Tracking ---------- */
-  window.dataLayer = window.dataLayer || [];
+  /* ---------- Tracking ----------
+     window.dataLayer est déclaré dans le <head>, AVANT le snippet GTM,
+     pour ne perdre aucun événement poussé avant le chargement du conteneur. */
   function track(name, payload){
     window.dataLayer.push(Object.assign({event:name}, payload || {}));
   }
@@ -606,16 +649,37 @@
   /* ================================================================
      POINT D'INTÉGRATION UNIQUE — envoi du lead.
      Pour changer la destination, ne modifier QUE cette fonction
-     (et la constante WEBHOOK_URL ci-dessous). Le reste de la page
+     (et la constante FORMSPREE_URL ci-dessous). Le reste de la page
      n'a pas à être touché.
+     NB : on ne capture PAS l'erreur ici — c'est l'appelant (le
+     gestionnaire de soumission) qui décide quoi en faire.
   ================================================================ */
-  var WEBHOOK_URL = 'REMPLACER_PAR_URL_WEBHOOK_N8N';
-  function sendLead(payload){
-    return fetch(WEBHOOK_URL, {
+  var FORMSPREE_URL = 'https://formspree.io/f/mjgnjzpz';
+  function sendLead(formEl){
+    return fetch(FORMSPREE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function(){ /* échec silencieux : l'appel téléphonique reste la voie principale */ });
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(formEl)
+    });
+  }
+
+  /* ---------- Normalisation téléphone → E.164 (conversions améliorées) ----------
+     toE164('06 12 34 56 78')    === '+33612345678'
+     toE164('+33 6 12 34 56 78') === '+33612345678'
+     toE164('0033612345678')     === '+33612345678'
+     toE164('06.12.34.56.78')    === '+33612345678'
+     toE164('06 12 34 56')       === ''            // incomplet : on ne devine pas
+     Format non reconnu → chaîne vide. Aucun hachage ici : le SHA-256 est fait
+     par la balise Google côté client. */
+  function toE164(raw){
+    if(!raw) return '';
+    var s = String(raw).replace(/[\s  .\-()]/g, '');
+    var digits;
+    if(s.indexOf('+33') === 0)       digits = s.slice(3);
+    else if(s.indexOf('0033') === 0) digits = s.slice(4);
+    else if(s.indexOf('0') === 0)    digits = s.slice(1);
+    else return '';
+    return /^\d{9}$/.test(digits) ? '+33' + digits : '';
   }
 
   /* ---------- Formulaire ---------- */
@@ -634,13 +698,18 @@
     });
   });
 
-  form.addEventListener('submit', function(e){
+  var sending = false; // verrou anti double-soumission
+
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
 
-    // honeypot : si rempli, on abandonne sans rien envoyer
-    if(form.elements['company'].value){ return; }
+    // 2. honeypot rempli → ni requête, ni événement
+    if(form.elements['_gotcha'].value){ return; }
 
-    // validation JS
+    // 3. verrou : une soumission déjà en cours
+    if(sending){ return; }
+
+    // 4. validation → focus sur le premier champ invalide
     var firstInvalid = null;
     required.forEach(function(f){
       var input = form.elements[f.name];
@@ -654,28 +723,50 @@
     });
     if(firstInvalid){ firstInvalid.focus(); return; }
 
+    // 5. verrouiller l'UI
+    sending = true;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var errEl = document.getElementById('form-err');
+    if(errEl) errEl.hidden = true;
+    if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Envoi…'; }
+
+    // 6. LIRE toutes les données AVANT toute modification du DOM :
+    //    l'état de confirmation écrase form.innerHTML, les champs disparaissent.
     var g = persistGclid();
     var payload = {
       telephone:  form.elements['telephone'].value.trim(),
       enlevement: form.elements['enlevement'].value.trim(),
       livraison:  form.elements['livraison'].value.trim(),
       delai:      form.elements['delai'].value,
-      gclid:      g,
-      source:     form.elements['source'].value
+      gclid:      g
     };
 
-    track('lead_formulaire', { delai: payload.delai, gclid: g });
-    sendLead(payload);
+    try {
+      // 7. envoi Formspree (FormData du formulaire réel, gclid déjà injecté)
+      var res = await sendLead(form);
+      if(!res.ok){ throw new Error('HTTP ' + res.status); }
 
-    // état de confirmation
-    form.innerHTML =
-      '<div class="confirm">' +
-        '<div class="check" aria-hidden="true">✓</div>' +
-        '<h2>C’est noté.</h2>' +
-        '<p>Un opérateur vous rappelle sous <strong>10 minutes</strong>.</p>' +
-        '<p>Besoin d’aller plus vite ?<br>' +
-        '<a href="tel:+33141066363" data-cta="tel" data-loc="hero">01 41 06 63 63</a></p>' +
-      '</div>';
+      // 8. SUCCÈS uniquement → conversion PUIS confirmation
+      track('lead_formulaire', {
+        delai: payload.delai,
+        gclid: g,
+        telephone_e164: toE164(payload.telephone),
+        form_id: 'lp-urgence-rappel'
+      });
+      form.innerHTML =
+        '<div class="confirm">' +
+          '<div class="check" aria-hidden="true">✓</div>' +
+          '<h2>C’est noté.</h2>' +
+          '<p>Un opérateur vous rappelle sous <strong>10 minutes</strong>.</p>' +
+          '<p>Besoin d’aller plus vite ?<br>' +
+          '<a href="tel:+33141066363" data-cta="tel" data-loc="confirmation">01 41 06 63 63</a></p>' +
+        '</div>';
+    } catch(err){
+      // 9. Erreur serveur OU réseau → message d'erreur, réactiver, AUCUN événement
+      if(errEl) errEl.hidden = false;
+      if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Réessayer'; }
+      sending = false;
+    }
   });
 
 })();
