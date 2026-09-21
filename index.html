@@ -146,11 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .delai-btn .d-name{display:block;font-size:12.5px;font-weight:700;color:#B9C6D8;margin-top:4px}
   .delai-btn[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
   .delai-btn[aria-pressed="true"] .d-name{color:#FFE1E1}
-  .estimate{margin-top:13px;font-size:16px;color:#EAF0F7}
-  .estimate strong{color:var(--white)}
-  .estimate .num{color:var(--white);font-size:19px}
-  .estimate-sub{font-size:13px;color:#9DB0C7;margin:4px 0 0}
-  .delai-note{font-size:12px;color:#8FA2BC;margin:6px 0 0}
+  .delai-note{font-size:12px;color:#8FA2BC;margin:12px 0 0}
   .hero-mention{font-size:13px;color:#9DB0C7;margin:12px 0 0}
 
   /* Hero form */
@@ -339,8 +335,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="d-time">3h</span><span class="d-name">Standard</span>
           </button>
         </div>
-        <p class="estimate" id="estimate" aria-live="polite">Enlèvement estimé à <strong class="num">14h52</strong></p>
-        <p class="estimate-sub" id="estimate-sub">Délais en deux-roues. Comptez 30 min de plus en véhicule.</p>
         <p class="delai-note">*Course directe, sans rupture de charge.</p>
       </div>
 
@@ -552,7 +546,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var TZ = 'Europe/Paris';
   var OPEN_MIN = 8*60 + 30;   // 8h30
   var CLOSE_MIN = 19*60;      // 19h00
-  var PICKUP = { '1h':30, '1h30':45, '3h':60 }; // délai d'enlèvement (min) par option
+  var DELAIS = { '1h':1, '1h30':1, '3h':1 }; // clés de délai valides
 
   function parisNow(){
     var parts = new Intl.DateTimeFormat('fr-FR', {
@@ -569,47 +563,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function isOpen(t){
     return t.isWeekday && t.minutes >= OPEN_MIN && t.minutes < CLOSE_MIN;
   }
-  function fmt(totalMin){
-    totalMin = ((totalMin % 1440) + 1440) % 1440;
-    var h = Math.floor(totalMin / 60), m = totalMin % 60;
-    return h + 'h' + (m < 10 ? '0' : '') + m;
-  }
-
   /* ---------- État + éléments ---------- */
   var state = { delai: '1h' };
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.delai-btn'));
   var select  = document.getElementById('f-delai');
-  var estEl   = document.getElementById('estimate');
-  var subEl   = document.getElementById('estimate-sub');
   var pill    = document.getElementById('status');
   var pillTxt = document.getElementById('status-text');
 
+  // Met à jour uniquement la pastille de statut (ouvert / fermé, heure de Paris)
   function refresh(){
-    var t = parisNow();
-    var open = isOpen(t);
-
-    // Pastille de statut
+    var open = isOpen(parisNow());
     pill.setAttribute('data-open', open ? 'true' : 'false');
     pillTxt.textContent = open ? 'Standard ouvert — on décroche' : 'Standard fermé — reprise à 8h30';
-
-    // Ligne d'estimation
-    if(open){
-      estEl.innerHTML = 'Enlèvement estimé à <strong class="num">' + fmt(t.minutes + PICKUP[state.delai]) + '</strong>';
-      subEl.textContent = 'Délais en deux-roues. Comptez 30 min de plus en véhicule.';
-    } else {
-      estEl.innerHTML = 'Premier enlèvement possible à <strong class="num">9h00</strong>';
-      subEl.textContent = 'Laissez votre numéro, on vous rappelle à l’ouverture.';
-    }
   }
 
   function setDelai(key, silent){
-    if(!PICKUP.hasOwnProperty(key)) return;
+    if(!DELAIS.hasOwnProperty(key)) return;
     state.delai = key;
     buttons.forEach(function(b){
       b.setAttribute('aria-pressed', b.getAttribute('data-delai') === key ? 'true' : 'false');
     });
     if(select.value !== key) select.value = key;
-    refresh();
     if(!silent) track('delai_selectionne', { delai: key });
   }
 
